@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h2= pageTitle
+  div
+    div members of the army: #{count}
+    each member in members
+      div
+        span #{member.name}
+        span #{member.location}
+  div new-member
+    form(action="/members/addMember" method="POST")
+      label(for="name") name
+      input(type="text" name="name")
+      label(for="location") location
+      input(type="text" name="location")
+      input(type="submit" value="add member" class="button")
+  
