@@ -10,7 +10,18 @@ body {
 .pull-right {
   float: right;
 }
-
+.add-member, .members {
+  height: 40px;
+}
+.card {
+  height: 240px;
+}
+.twitter-handle {
+  height: 15px;
+}
+.location {
+  height: 60px;
+}
 .city {
   margin-right: 5px;
 }

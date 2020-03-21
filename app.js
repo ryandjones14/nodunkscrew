@@ -3,14 +3,10 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const cors = require('cors');
-const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
 
-var indexRouter = require('./routes/index');
 var membersRouter = require('./routes/members');
+var addMemberRouter = require('./routes/addMember');
 
 require('dotenv').config({ path: 'variables.env' });
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, dbName: 'nodunksworldwide' }).
@@ -33,8 +29,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use('/', indexRouter);
 app.use('/', membersRouter);
+app.use('/add', addMemberRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
