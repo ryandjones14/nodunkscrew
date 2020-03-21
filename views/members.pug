@@ -23,25 +23,27 @@ block content
           label(class="form-label" for="country") country
           select.form-select(name='country')
             each country in countries
-              option(value=country.alpha3Code) #{country.name}
+              option(value=country.alpha3Code selected=(country.alpha3Code === 'USA')) #{country.name}
         div.column.col-12.form-group
-          input(type="submit" value="add member" class="btn btn-primary")
+          input(type="submit" value="add member" class="btn btn-primary pull-right")
     div.members
       h4 members of the army: #{count}
       div.columns
         each member in members
-          div.column.col-xs-12.col-sm-6.col-lg-4
+          div.column.col-4.col-lg-4.col-sm-6.col-xs-12
             div.card
               div.card-image
                 img(src=`https://restcountries.eu/data/${member.country.toLowerCase()}.svg` class="img-responsive")
               div.card-header
                 div.card-title.h5= member.name
                 if member.twitterHandle
-                  div.card-subtitle.text-gray= member.twitterHandle
+                  div.card-subtitle.text-gray
+                    a(href=`https://twitter.com/${member.twitterHandle}` target="_blank")= member.twitterHandle
               div.card-body
-                p
-                if member.city
-                  span= member.city
-                if member.state
-                  span= member.state
-                p.label.label-rounded.label-primary= member.country
+                div
+                  if member.city
+                    span.location.city= member.city
+                  if member.state
+                    span.location.state= member.state
+                  div.country
+                    p.label.label-rounded.label-primary= member.country

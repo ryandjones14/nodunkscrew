@@ -6,3 +6,11 @@ body {
 .form-item {
   margin: 10px 0;
 }
+
+.pull-right {
+  float: right;
+}
+
+.city {
+  margin-right: 5px;
+}
