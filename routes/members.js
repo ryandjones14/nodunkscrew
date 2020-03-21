@@ -11,7 +11,7 @@ router.get('/', async function(req, res, next) {
   try {
     const members = await member.find();
     res.render('members', {
-      title: 'no dunks worldwide crew',
+      title: 'no dunks crew',
       pageTitle: 'add yourself as a no dunks crew member',
       members,
       count: members.length,
