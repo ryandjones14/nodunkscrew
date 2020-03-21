@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  div.members
+    button.btn.btn-link.pull-right
+      a(href='/') view all members
+  h2= pageTitle
+  div.container
+    div.form
+      form(action="/add/addMember" method="POST" class="columns")
+        div.column.col-6.form-group
+          label(class="form-label" for="name") name
+          input(class="form-input" type="text" name="name" required)
+        div.column.col-6.form-group
+          label(class="form-label" for="twitterHandle") twitter handle
+          div.input-group
+            span.input-group-addon @
+            input(class="form-input" type="text" name="twitterHandle")
+        div.column.col-6.form-group
+          label(class="form-label" for="city") city
+          input(class="form-input" type="text" name="city")
+        div.column.col-6.form-group
+          label(class="form-label" for="state") state
+          input(class="form-input" type="text" name="state")
+        div.column.col-12.form-group
+          label(class="form-label" for="country") country
+          select.form-select(name='country')
+            each country in countries
+              option(value=country.alpha3Code selected=(country.alpha3Code === 'USA')) #{country.name}
+        div.column.col-12.form-group
+          input(type="submit" value="add member" class="btn btn-primary pull-right")
