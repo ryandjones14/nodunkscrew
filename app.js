@@ -6,7 +6,6 @@ var logger = require('morgan');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-var flash = require('connect-flash');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
@@ -40,10 +39,9 @@ app.use(session({
   saveUninitialized: false,
   store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
-app.use(flash());
 
-app.use('/', indexRouter);
-app.use('/members', membersRouter);
+// app.use('/', indexRouter);
+app.use('/', membersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

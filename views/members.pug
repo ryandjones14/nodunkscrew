@@ -2,17 +2,46 @@ extends layout
 
 block content
   h2= pageTitle
-  div
-    div members of the army: #{count}
-    each member in members
-      div
-        span #{member.name}
-        span #{member.location}
-  div new-member
-    form(action="/members/addMember" method="POST")
-      label(for="name") name
-      input(type="text" name="name")
-      label(for="location") location
-      input(type="text" name="location")
-      input(type="submit" value="add member" class="button")
-  
+  div.container
+    div.form
+      form(action="/addMember" method="POST" class="columns")
+        div.column.col-6.form-group
+          label(class="form-label" for="name") name
+          input(class="form-input" type="text" name="name" required)
+        div.column.col-6.form-group
+          label(class="form-label" for="twitterHandle") twitter handle
+          div.input-group
+            span.input-group-addon @
+            input(class="form-input" type="text" name="twitterHandle")
+        div.column.col-6.form-group
+          label(class="form-label" for="city") city
+          input(class="form-input" type="text" name="city")
+        div.column.col-6.form-group
+          label(class="form-label" for="state") state
+          input(class="form-input" type="text" name="state")
+        div.column.col-12.form-group
+          label(class="form-label" for="country") country
+          select.form-select(name='country')
+            each country in countries
+              option(value=country.alpha3Code) #{country.name}
+        div.column.col-12.form-group
+          input(type="submit" value="add member" class="btn btn-primary")
+    div.members
+      h4 members of the army: #{count}
+      div.columns
+        each member in members
+          div.column.col-xs-12.col-sm-6.col-lg-4
+            div.card
+              div.card-image
+                img(src=`https://restcountries.eu/data/${member.country.toLowerCase()}.svg` class="img-responsive")
+              div.card-header
+                div.card-title.h5= member.name
+                if member.twitterHandle
+                  div.card-subtitle.text-gray= member.twitterHandle
+              div.card-body
+                p
+                if member.city
+                  span= member.city
+                if member.state
+                  span= member.state
+                p.label.label-rounded.label-primary= member.country
