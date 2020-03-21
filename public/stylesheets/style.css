@@ -14,7 +14,7 @@ body {
   height: 40px;
 }
 .card {
-  height: 240px;
+  background: #eaeaea;
 }
 .twitter-handle {
   height: 15px;
