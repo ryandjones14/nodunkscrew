@@ -4,11 +4,15 @@ block content
   div.add-member
     button.btn.btn-link.pull-right
       a(href='/add') add crew member
+  if isFiltered
+    div.reset-members
+      button.btn.btn-link.pull-right
+        a(href='/') reset filter
   div.members
     h4 members of the army: #{count}
     div.columns
       each member in members
-        div.column.col-4.col-lg-4.col-sm-6.col-xs-12
+        div.column.col-12
           div.card
             div.card-image
               img(src=`https://restcountries.eu/data/${member.country.toLowerCase()}.svg` class="img-responsive flag")
@@ -21,4 +25,4 @@ block content
                 span.location.city= member.city
                 span.location.state= member.state
                 div.country
-                  p.label.label-rounded.label-primary= member.country
+                  a(href=`/country/${member.country}` class="label label-rounded label-primary")= member.country

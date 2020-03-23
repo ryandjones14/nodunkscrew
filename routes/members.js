@@ -9,9 +9,27 @@ router.get('/', async function (req, res, next) {
     const members = await member.find();
     res.render('members', {
       title: 'no dunks crew',
-      pageTitle: 'add yourself as a no dunks crew member',
       members,
       count: members.length,
+      isFiltered: false,
+    });
+  } catch (e) {
+    console.log(`fetch members => error: ${e}`);
+    res.status(500);
+    res.json(error);
+  }
+});
+
+router.get('/country/:country', async function (req, res, next) {
+  const country = req.params.country;
+  try {
+    const members = await member.find({ country });
+    const memberCountries = members.map(member => member.country);
+    res.render('members', {
+      title: 'no dunks crew',
+      members,
+      count: members.length,
+      isFiltered: true,
     });
   } catch (e) {
     console.log(`fetch members => error: ${e}`);
