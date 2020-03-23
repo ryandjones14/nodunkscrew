@@ -1,6 +1,6 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px, Futura, sans-serif;
 }
 
 .form-item {
@@ -14,7 +14,12 @@ body {
   height: 40px;
 }
 .card {
-  background: #eaeaea;
+  background: #eaeaea
+  margin-bottom: 10px;
+}
+
+.flag {
+  max-height: 85px;
 }
 .twitter-handle {
   height: 15px;
