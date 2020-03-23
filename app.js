@@ -9,7 +9,7 @@ var membersRouter = require('./routes/members');
 var addMemberRouter = require('./routes/addMember');
 
 require('dotenv').config({ path: 'variables.env' });
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, dbName: 'nodunksworldwide' }).
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, dbName: process.env.DATABASE }).
   then(() => console.log('Connected')).
   catch(err => console.log('Caught', err.stack));
 mongoose.Promise = global.Promise;
